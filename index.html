@@ -12,12 +12,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
     <style>
-      .katex { font-size: 10em !important; }
+      #normal { 
+        font-size: 5em !important; 
+      }
+
+      #step {
+        font-size: 3em !important;
+      }
+
+      .row {
+        padding: 15px 0px 0px 0px;
+      }
+
+      .result {
+        font-size: 2em;
+      }
     </style>
   </head>
   
   <body>
-    <div class="container">
+    <div class="container-fluid">
       
       <div class="row">
         <div class="col-md-12 text-center">
@@ -42,8 +56,8 @@
       </div>
       
       <div class="row">
-        <div class="col-md-6 text-center" id="letax"></div>
-        <div class="col-md-6 text-center" id="step"></div>
+          <div class="col-md-4 text-center"> <p class="result">直式</p> <span id="normal"></span> </div>
+          <div class="col-md-8 text-center"> <p class="result">橫式</p> <span id="step"></span ></div>
       </div>
     </div>
     
@@ -51,13 +65,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
     <script>
-    	$('#calmath').bind('submit', function(e){
+    	$('#calmath').bind('submit', function(e) {
             e.preventDefault();
             switch ( this.calmethod.value ) {
                 case 'times':
-                ans = this.number1.value * this.number2.value
-                katex.render('\\frac{ \\begin{matrix} & ' + this.number1.value + 
-                    '\\\\ \\times &' + this.number2.value + '\\end{matrix} }{ \\begin{matrix} &' + ans + '\\end{matrix} }', letax);
+                var ans = this.number1.value * this.number2.value
+                    katex.render('\\frac{ \\begin{array}{rr} &' + this.number1.value + '\\\\ \\times &' + this.number2.value + '\\end{array} }{ \\begin{array}{rr} \\phantom{X} &' + ans + '\\end{array} }', normal);
+                if (this.number2.value > 5) {
+                    $( '#step' ).append( 'QQ' );
+                } else {
+                    var tmp = 0;
+                    var result = 0;
+                    var render = '';
+                    for (i = 0; i < this.number2.value; i++) {
+                        result = Number(tmp) + Number(this.number1.value);
+                        render += tmp + '+' + this.number1.value + '=' + result + '\\\\ ';
+                        katex.render('\\begin{array}{rr}' + render + '\\end{array}', step);
+                        tmp = result;
+                    }
+                }
                 break;
 
                 case 'divide':
