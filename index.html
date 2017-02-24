@@ -11,27 +11,30 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
+    <style>
+      .katex { font-size: 10em !important; }
+    </style>
   </head>
   
   <body>
-    <div class="container-fluid">
+    <div class="container">
       
       <div class="row">
         <div class="col-md-12 text-center">
-          <form class="form-inline">
+          <form class="form-inline" id="calmath" autocomplete="off">
             <div class="form-group">
-              <input type="text" class="form-control" id="number1">
+              <input type="text" class="form-control" id="number1" name="number1">
             </div>
             <div class="form-group">
               <label class="radio-inline">
-                <input type="radio" name="calmethod" id="calmethod" value="*"> &times;
+                <input type="radio" name="calmethod" id="times" value="times"> &times;
               </label>
               <label class="radio-inline">
-                <input type="radio" name="calmethod" id="calmethod" value="/"> &divide;
+                <input type="radio" name="calmethod" id="divide" value="divide"> &divide;
               </label>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="number2">
+              <input type="text" class="form-control" id="number2" name="number2">
             </div>
             <button type="submit" class="btn btn-primary">產生步驟</button>
           </form>
@@ -39,8 +42,8 @@
       </div>
       
       <div class="row">
-        <div class="col-md-6" id="letax"></div>
-        <div class="col-md-6" id="step"></div>
+        <div class="col-md-6 text-center" id="letax"></div>
+        <div class="col-md-6 text-center" id="step"></div>
       </div>
     </div>
     
@@ -48,7 +51,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
     <script>
-    
+    	$('#calmath').bind('submit', function(e){
+            e.preventDefault();
+            switch ( this.calmethod.value ) {
+                case 'times':
+                ans = this.number1.value * this.number2.value
+                katex.render('\\frac{ \\begin{matrix} & ' + this.number1.value + 
+                    '\\\\ \\times &' + this.number2.value + '\\end{matrix} }{ \\begin{matrix} &' + ans + '\\end{matrix} }', letax);
+                break;
+
+                case 'divide':
+                alert( this.number1.value / this.number2.value);
+                break;
+            }
+    	});
     </script>
   </body>
 </html>
