@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
     <style>
-      #normal { 
-        font-size: 5em !important; 
+      #normal {
+        font-size: 5em !important;
       }
 
       #step {
@@ -29,10 +29,10 @@
       }
     </style>
   </head>
-  
+
   <body>
     <div class="container-fluid">
-      
+
       <div class="row">
         <div class="col-md-12 text-center">
           <form class="form-inline" id="calmath" autocomplete="off">
@@ -54,18 +54,19 @@
           </form>
         </div>
       </div>
-      
+
       <div class="row">
           <div class="col-md-4 text-center"> <p class="result">直式</p> <span id="normal"></span> </div>
           <div class="col-md-8 text-center"> <p class="result">橫式</p> <span id="step"></span ></div>
       </div>
+
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
     <script>
-    	$('#calmath').bind('submit', function(e) {
+        $('#calmath').bind('submit', function(e) {
             e.preventDefault();
             switch ( this.calmethod.value ) {
                 case 'times':
@@ -90,7 +91,7 @@
                 alert( this.number1.value / this.number2.value);
                 break;
             }
-    	});
+        });
     </script>
   </body>
 </html>
