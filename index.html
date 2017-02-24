@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="description" content="建構式數學計算步驟產生器">
+    <meta name="author" content="Tsai-Fu-Hsuan">
+
+    <title>建構式數學計算步驟產生器</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
+  </head>
+  
+  <body>
+    <div class="container-fluid">
+	
+	  <div class="row">
+	    <div class="col-md-12 text-center">
+		  <form class="form-inline">
+		    <div class="form-group">
+              <input type="text" class="form-control" id="number1">
+			</div>
+			<div class="form-group">
+		      <label class="radio-inline">
+                <input type="radio" name="calmethod" id="calmethod" value="*"> &times;
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="calmethod" id="calmethod" value="/"> &divide;
+              </label>
+			</div>
+			<div class="form-group">
+		      <input type="text" class="form-control" id="number2">
+            </div>
+            <button type="submit" class="btn btn-primary">產生步驟</button>
+          </form>
+		</div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="col-md-6" id="letax"></div>
+        <div class="col-md-6" id="step"></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+	<script>
+	  
+	</script>
+  </body>
+</html>
