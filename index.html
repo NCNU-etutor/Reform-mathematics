@@ -74,28 +74,42 @@
             e.preventDefault();
             switch ( this.calmethod.value ) {
                 case 'times':
-                var ans = this.number1.value * this.number2.value
-                    katex.render('\\frac{ \\begin{array}{rr} &' + this.number1.value + '\\\\ \\times &' + this.number2.value + '\\end{array} }{ \\begin{array}{rr} \\phantom{X} &' + ans + '\\end{array} }', normal);
-                if (this.number2.value > 5) {
-                    $( '#step' ).append( 'QQ' );
-                } else {
+                    var colorgenerator = getRandomColor();
+                    //console.log(generator.next().value);
+                    var ans = this.number1.value * this.number2.value
                     var tmp = 0;
                     var result = 0;
                     var render = '';
-                    for (i = 0; i < this.number2.value; i++) {
-                        result = Number(tmp) + Number(this.number1.value);
-                        render += tmp + '+' + this.number1.value + '=' + result + '\\\\ ';
-                        katex.render('\\begin{array}{rr}' + render + '\\end{array}', step);
-                        tmp = result;
+                    katex.render('\\frac{ \\begin{array}{rr} &' + this.number1.value + '\\\\ \\times &' + this.number2.value + '\\end{array} }{ \\begin{array}{} \\phantom{X} &' + ans + '\\end{array} }', normal);
+                    if (this.number2.value > 5) {
+                        var count = 0;
+                        katex.render('QQ', step);
+                    } else {
+                        for (i = 0; i < this.number2.value; i++) {
+                            result = Number(tmp) + Number(this.number1.value);
+                            render += tmp + '+' + this.number1.value + '=' + result + '\\\\ ';
+                            katex.render('\\begin{array}{rr}' + render + '\\end{array}', step);
+                            tmp = result;
+                        }
                     }
-                }
                 break;
 
                 case 'divide':
-                alert( this.number1.value / this.number2.value);
+                    alert( this.number1.value / this.number2.value);
                 break;
             }
         });
+
+        function * getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            while(true) {
+                var color = '#';
+                for (var i = 0; i < 6; i++ ) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                yield color;  
+            }
+        }
     </script>
   </body>
 </html>
