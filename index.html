@@ -75,19 +75,30 @@
             switch ( this.calmethod.value ) {
                 case 'times':
                     var colorgenerator = getRandomColor();
-                    //console.log(generator.next().value);
+                    //console.log(colorgenerator.next().value);
                     var ans = this.number1.value * this.number2.value
                     var tmp = 0;
                     var result = 0;
                     var render = '';
+                    var color1 = colorgenerator.next().value;
+                    var color2 = colorgenerator.next().value;
                     katex.render('\\frac{ \\begin{array}{rr} &' + this.number1.value + '\\\\ \\times &' + this.number2.value + '\\end{array} }{ \\begin{array}{} \\phantom{X} &' + ans + '\\end{array} }', normal);
                     if (this.number2.value > 5) {
                         var count = 0;
-                        katex.render('QQ', step);
+                        for (i = 0; i < this.number2.value; i++) {
+                            result = Number(tmp) + Number(this.number1.value);
+                            render += '\\color{' + color1 + '}{' + tmp + '} +' + this.number1.value + '= \\color{' + color2 + '}{' + result + '} \\\\ ';
+                            color1 = color2;
+                            color2 = colorgenerator.next().value;
+                            katex.render('\\begin{array}{rr}' + render + '\\end{array}', step);
+                            tmp = result;
+                        }
                     } else {
                         for (i = 0; i < this.number2.value; i++) {
                             result = Number(tmp) + Number(this.number1.value);
-                            render += tmp + '+' + this.number1.value + '=' + result + '\\\\ ';
+                            render += '\\color{' + color1 + '}{' + tmp + '} +' + this.number1.value + '= \\color{' + color2 + '}{' + result + '} \\\\ ';
+                            color1 = color2;
+                            color2 = colorgenerator.next().value;
                             katex.render('\\begin{array}{rr}' + render + '\\end{array}', step);
                             tmp = result;
                         }
