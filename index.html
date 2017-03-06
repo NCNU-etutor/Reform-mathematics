@@ -106,7 +106,25 @@
                 break;
 
                 case 'divide':
-                    alert( this.number1.value / this.number2.value);
+                    var colorgenerator = getRandomColor();
+                    //console.log(colorgenerator.next().value);
+                    var ans = 0;
+                    var result = 0;
+                    var count = 0;
+                    var render = '';
+                    var color1 = colorgenerator.next().value;
+                    var color2 = colorgenerator.next().value;
+                    var tmp = this.number1.value;
+                    while (Number(tmp) >= Number(this.number2.value)) {
+                        result = Number(tmp) - Number(this.number2.value);
+                        render += '\\color{' + color1 + '}{' + tmp + '} -' + this.number2.value + '= \\color{' + color2 + '}{' + result + '} \\\\ ';
+                        color1 = color2;
+                        color2 = colorgenerator.next().value;
+                        katex.render('\\begin{array}{rr}' + render + '\\end{array}', step);
+                        tmp = result;
+                        count++;
+                    }
+                    katex.render('\\begin{array}{rr}' + render + '\\text{商: }' + count + ' \\\\ \\text{餘數: }' + result + ' \\end{array}', step);
                 break;
             }
         });
